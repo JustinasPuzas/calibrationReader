@@ -200,7 +200,7 @@ forLoop:
 				log.Err(err).Msg("module measurement could not be parsed")
 				break forLoop
 			}
-			myModule.Measurements[bufMeasurement.name] = bufMeasurement
+			myModule.Measurements[bufMeasurement.Name] = bufMeasurement
 			log.Info().Msg("module measurement successfully parsed")
 		case beginModCommonToken:
 			myModule.ModCommon, err = parseModCommon(tok)
@@ -559,7 +559,7 @@ func collectChannelsMultithreaded(myModule *Module, cA2ml chan a2ml, cAxisPts ch
 	go func(wg *sync.WaitGroup) {
 		defer wg.Done()
 		for elem := range cMeasurement {
-			myModule.Measurements[elem.name] = elem
+			myModule.Measurements[elem.Name] = elem
 		}
 		log.Info().Msg("collected measurements")
 	}(wgCollectors)
