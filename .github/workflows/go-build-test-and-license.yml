@@ -28,4 +28,4 @@ jobs:
       run: go install github.com/google/go-licenses@latest
 
     - name: Check Licenses
-      run: go-licenses check "github.com/asap2Go/calibrationReader" 
+      run: go-licenses check "github.com/JustinasPuzas/calibrationReader" 

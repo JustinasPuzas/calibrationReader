@@ -1,4 +1,4 @@
-module github.com/asap2Go/calibrationReader
+module github.com/JustinasPuzas/calibrationReader
 
 go 1.18
 
