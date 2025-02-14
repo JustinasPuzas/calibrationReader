@@ -238,11 +238,12 @@ forLoop:
 					log.Err(err).Msg("measurement datatype could not be parsed")
 					break forLoop
 				}
-				log.Info().Msg("measurement datatype successfully parsed")
 				m.DatatypeSet = true
 				log.Info().Msg("measurement datatype successfully parsed")
 			} else if !m.ConversionSet {
 				m.Conversion = tok.current()
+				m.ConversionSet = true
+				log.Info().Msg("measurement conversion successfully parsed")
 			} else if !m.ResolutionSet {
 				var buf uint64
 				buf, err = strconv.ParseUint(tok.current(), 10, 16)
