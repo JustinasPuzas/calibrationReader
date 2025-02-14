@@ -9,53 +9,53 @@ import (
 
 type Characteristic struct {
 	Name              string
-	nameSet           bool
+	NameSet           bool
 	LongIdentifier    string
-	longIdentifierSet bool
+	LongIdentifierSet bool
 	Type              TypeEnum
 	TypeSet           bool
 	Address           string
 	AddressUint32     uint32
-	addressSet        bool
+	AddressSet        bool
 	//Deposit is the identifier of the corresponding record layout
 	Deposit       string
 	DepositSet    bool
-	encoding      encodingEnum
-	maxDiff       float64
-	maxDiffSet    bool
-	conversion    string
-	conversionSet bool
-	lowerLimit    float64
-	lowerLimitSet bool
-	upperLimit    float64
-	upperLimitSet bool
-	annotation    []annotation
-	axisDescr     []axisDescr
-	bitMask       bitMask
+	Encoding      encodingEnum
+	MaxDiff       float64
+	MaxDiffSet    bool
+	Conversion    string
+	ConversionSet bool
+	LowerLimit    float64
+	LowerLimitSet bool
+	UpperLimit    float64
+	UpperLimitSet bool
+	Annotation    []annotation
+	AxisDescr     []axisDescr
+	BitMask       bitMask
 	//byteOrder can be used to overwrite the standard byte order defined in mod par
-	byteOrder               ByteOrder
-	calibrationAccess       calibrationAccessEnum
-	comparisonQuantity      comparisonQuantity
-	dependentCharacteristic []DependentCharacteristic
-	discrete                discreteKeyword
-	displayIdentifier       DisplayIdentifier
-	ecuAddressExtension     ecuAddressExtension
-	extendedLimits          extendedLimits
-	format                  format
-	functionList            []FunctionList
-	guardRails              guardRailsKeyword
-	ifData                  []IfData
-	mapList                 []MapList
+	ByteOrder               ByteOrder
+	CalibrationAccess       calibrationAccessEnum
+	ComparisonQuantity      comparisonQuantity
+	DependentCharacteristic []DependentCharacteristic
+	Discrete                discreteKeyword
+	DisplayIdentifier       DisplayIdentifier
+	EcuAddressExtension     ecuAddressExtension
+	ExtendedLimits          extendedLimits
+	Format                  format
+	FunctionList            []FunctionList
+	GuardRails              guardRailsKeyword
+	IfData                  []IfData
+	MapList                 []MapList
 	MatrixDim               MatrixDim
-	maxRefresh              MaxRefresh
-	modelLink               modelLink
-	number                  Number
-	physUnit                physUnit
-	readOnly                readOnlyKeyword
-	refMemorySegment        refMemorySegment
-	stepSize                StepSize
-	symbolLink              symbolLink
-	virtualCharacteristic   []VirtualCharacteristic
+	MaxRefresh              MaxRefresh
+	ModelLink               modelLink
+	Number                  Number
+	PhysUnit                physUnit
+	ReadOnly                readOnlyKeyword
+	RefMemorySegment        refMemorySegment
+	StepSize                StepSize
+	SymbolLink              symbolLink
+	VirtualCharacteristic   []VirtualCharacteristic
 }
 
 func parseCharacteristic(tok *tokenGenerator) (Characteristic, error) {
@@ -71,7 +71,7 @@ forLoop:
 				log.Err(err).Msg("characteristic annotation could not be parsed")
 				break forLoop
 			}
-			c.annotation = append(c.annotation, buf)
+			c.Annotation = append(c.Annotation, buf)
 			log.Info().Msg("characteristic annotation successfully parsed")
 		case beginAxisDescrToken:
 			var buf axisDescr
@@ -80,31 +80,31 @@ forLoop:
 				log.Err(err).Msg("characteristic axisDescr could not be parsed")
 				break forLoop
 			}
-			c.axisDescr = append(c.axisDescr, buf)
+			c.AxisDescr = append(c.AxisDescr, buf)
 			log.Info().Msg("characteristic axisDescr successfully parsed")
 		case bitMaskToken:
-			c.bitMask, err = parseBitMask(tok)
+			c.BitMask, err = parseBitMask(tok)
 			if err != nil {
 				log.Err(err).Msg("characteristic bitMask could not be parsed")
 				break forLoop
 			}
 			log.Info().Msg("characteristic bitMask successfully parsed")
 		case byteOrderToken:
-			c.byteOrder, err = parseByteOrder(tok)
+			c.ByteOrder, err = parseByteOrder(tok)
 			if err != nil {
 				log.Err(err).Msg("characteristic byteOrder could not be parsed")
 				break forLoop
 			}
 			log.Info().Msg("characteristic byteOrder successfully parsed")
 		case calibrationAccessToken:
-			c.calibrationAccess, err = parseCalibrationAccessEnum(tok)
+			c.CalibrationAccess, err = parseCalibrationAccessEnum(tok)
 			if err != nil {
 				log.Err(err).Msg("characteristic calibrationAccess could not be parsed")
 				break forLoop
 			}
 			log.Info().Msg("characteristic calibrationAccess successfully parsed")
 		case comparisonQuantityToken:
-			c.comparisonQuantity, err = parseComparisonQuantity(tok)
+			c.ComparisonQuantity, err = parseComparisonQuantity(tok)
 			if err != nil {
 				log.Err(err).Msg("characteristic comparisonQuantity could not be parsed")
 				break forLoop
@@ -117,45 +117,45 @@ forLoop:
 				log.Err(err).Msg("characteristic dependentCharacteristic could not be parsed")
 				break forLoop
 			}
-			c.dependentCharacteristic = append(c.dependentCharacteristic, buf)
+			c.DependentCharacteristic = append(c.DependentCharacteristic, buf)
 			log.Info().Msg("characteristic dependentCharacteristic successfully parsed")
 		case discreteToken:
-			c.discrete, err = parseDiscrete(tok)
+			c.Discrete, err = parseDiscrete(tok)
 			if err != nil {
 				log.Err(err).Msg("characteristic discrete could not be parsed")
 				break forLoop
 			}
 			log.Info().Msg("characteristic discrete successfully parsed")
 		case displayIdentifierToken:
-			c.displayIdentifier, err = parseDisplayIdentifier(tok)
+			c.DisplayIdentifier, err = parseDisplayIdentifier(tok)
 			if err != nil {
 				log.Err(err).Msg("characteristic displayIdentifier could not be parsed")
 				break forLoop
 			}
 			log.Info().Msg("characteristic displayIdentifier successfully parsed")
 		case encodingToken:
-			c.encoding, err = parseEncodingEnum(tok)
+			c.Encoding, err = parseEncodingEnum(tok)
 			if err != nil {
 				log.Err(err).Msg("characteristic encoding could not be parsed")
 				break forLoop
 			}
 			log.Info().Msg("characteristic encoding successfully parsed")
 		case ecuAddressExtensionToken:
-			c.ecuAddressExtension, err = parseECUAddressExtension(tok)
+			c.EcuAddressExtension, err = parseECUAddressExtension(tok)
 			if err != nil {
 				log.Err(err).Msg("characteristic ecuAddressExtension could not be parsed")
 				break forLoop
 			}
 			log.Info().Msg("characteristic ecuAddressExtension successfully parsed")
 		case extendedLimitsToken:
-			c.extendedLimits, err = parseExtendedLimits(tok)
+			c.ExtendedLimits, err = parseExtendedLimits(tok)
 			if err != nil {
 				log.Err(err).Msg("characteristic bufExtendedLimits could not be parsed")
 				break forLoop
 			}
 			log.Info().Msg("characteristic extendedLimits successfully parsed")
 		case formatToken:
-			c.format, err = parseFormat(tok)
+			c.Format, err = parseFormat(tok)
 			if err != nil {
 				log.Err(err).Msg("characteristic format could not be parsed")
 				break forLoop
@@ -168,10 +168,10 @@ forLoop:
 				log.Err(err).Msg("characteristic functionList could not be parsed")
 				break forLoop
 			}
-			c.functionList = append(c.functionList, buf)
+			c.FunctionList = append(c.FunctionList, buf)
 			log.Info().Msg("characteristic functionList successfully parsed")
 		case guardRailsToken:
-			c.guardRails, err = parseGuardRails(tok)
+			c.GuardRails, err = parseGuardRails(tok)
 			if err != nil {
 				log.Err(err).Msg("characteristic guardRails could not be parsed")
 				break forLoop
@@ -184,7 +184,7 @@ forLoop:
 				log.Err(err).Msg("characteristic ifData could not be parsed")
 				break forLoop
 			}
-			c.ifData = append(c.ifData, buf)
+			c.IfData = append(c.IfData, buf)
 			log.Info().Msg("characteristic ifData successfully parsed")
 		case beginMapListToken:
 			var buf MapList
@@ -193,7 +193,7 @@ forLoop:
 				log.Err(err).Msg("characteristic mapList could not be parsed")
 				break forLoop
 			}
-			c.mapList = append(c.mapList, buf)
+			c.MapList = append(c.MapList, buf)
 			log.Info().Msg("characteristic mapList successfully parsed")
 		case matrixDimToken:
 			c.MatrixDim, err = parseMatrixDim(tok)
@@ -203,56 +203,56 @@ forLoop:
 			}
 			log.Info().Msg("characteristic matrixDim successfully parsed")
 		case maxRefreshToken:
-			c.maxRefresh, err = parseMaxRefresh(tok)
+			c.MaxRefresh, err = parseMaxRefresh(tok)
 			if err != nil {
 				log.Err(err).Msg("characteristic maxRefresh could not be parsed")
 				break forLoop
 			}
 			log.Info().Msg("characteristic maxRefresh successfully parsed")
 		case modelLinkToken:
-			c.modelLink, err = parseModelLink(tok)
+			c.ModelLink, err = parseModelLink(tok)
 			if err != nil {
 				log.Err(err).Msg("measurement modelLink could not be parsed")
 				break forLoop
 			}
 			log.Info().Msg("measurement modelLink successfully parsed")
 		case numberToken:
-			c.number, err = parseNumber(tok)
+			c.Number, err = parseNumber(tok)
 			if err != nil {
 				log.Err(err).Msg("characteristic number could not be parsed")
 				break forLoop
 			}
 			log.Info().Msg("characteristic number successfully parsed")
 		case physUnitToken:
-			c.physUnit, err = parsePhysUnit(tok)
+			c.PhysUnit, err = parsePhysUnit(tok)
 			if err != nil {
 				log.Err(err).Msg("characteristic physUnit could not be parsed")
 				break forLoop
 			}
 			log.Info().Msg("characteristic physUnit successfully parsed")
 		case readOnlyToken:
-			c.readOnly, err = parseReadOnly(tok)
+			c.ReadOnly, err = parseReadOnly(tok)
 			if err != nil {
 				log.Err(err).Msg("characteristic readOnly could not be parsed")
 				break forLoop
 			}
 			log.Info().Msg("characteristic readOnly successfully parsed")
 		case refMemorySegmentToken:
-			c.refMemorySegment, err = parseRefMemorySegment(tok)
+			c.RefMemorySegment, err = parseRefMemorySegment(tok)
 			if err != nil {
 				log.Err(err).Msg("characteristic refMemorySegment could not be parsed")
 				break forLoop
 			}
 			log.Info().Msg("characteristic refMemorySegment successfully parsed")
 		case stepSizeToken:
-			c.stepSize, err = parseStepSize(tok)
+			c.StepSize, err = parseStepSize(tok)
 			if err != nil {
 				log.Err(err).Msg("characteristic stepSize could not be parsed")
 				break forLoop
 			}
 			log.Info().Msg("characteristic stepSize successfully parsed")
 		case symbolLinkToken:
-			c.symbolLink, err = parseSymbolLink(tok)
+			c.SymbolLink, err = parseSymbolLink(tok)
 			if err != nil {
 				log.Err(err).Msg("characteristic symbolLink could not be parsed")
 				break forLoop
@@ -265,7 +265,7 @@ forLoop:
 				log.Err(err).Msg("characteristic virtualCharacteristic could not be parsed")
 				break forLoop
 			}
-			c.virtualCharacteristic = append(c.virtualCharacteristic, buf)
+			c.VirtualCharacteristic = append(c.VirtualCharacteristic, buf)
 			log.Info().Msg("characteristic virtualCharacteristic successfully parsed")
 		default:
 			if tok.current() == emptyToken {
@@ -278,13 +278,13 @@ forLoop:
 				err = errors.New("unexpected token " + tok.current())
 				log.Err(err).Msg("characteristic could not be parsed")
 				break forLoop
-			} else if !c.nameSet {
+			} else if !c.NameSet {
 				c.Name = tok.current()
-				c.nameSet = true
+				c.NameSet = true
 				log.Info().Msg("characteristic name successfully parsed")
-			} else if !c.longIdentifierSet {
+			} else if !c.LongIdentifierSet {
 				c.LongIdentifier = tok.current()
-				c.longIdentifierSet = true
+				c.LongIdentifierSet = true
 				log.Info().Msg("characteristic longIdentifier successfully parsed")
 			} else if !c.TypeSet {
 				c.Type, err = parseTypeEnum(tok)
@@ -294,47 +294,47 @@ forLoop:
 				}
 				c.TypeSet = true
 				log.Info().Msg("characteristic type successfully parsed")
-			} else if !c.addressSet {
+			} else if !c.AddressSet {
 				c.Address = tok.current()
-				c.addressSet = true
+				c.AddressSet = true
 				log.Info().Msg("characteristic Address successfully parsed")
 			} else if !c.DepositSet {
 				c.Deposit = tok.current()
 				c.DepositSet = true
 				log.Info().Msg("characteristic deposit successfully parsed")
-			} else if !c.maxDiffSet {
+			} else if !c.MaxDiffSet {
 				var buf float64
 				buf, err = strconv.ParseFloat(tok.current(), 64)
 				if err != nil {
 					log.Err(err).Msg("characteristic maxDiff could not be parsed")
 					break forLoop
 				}
-				c.maxDiff = buf
-				c.maxDiffSet = true
+				c.MaxDiff = buf
+				c.MaxDiffSet = true
 				log.Info().Msg("characteristic maxDiff successfully parsed")
-			} else if !c.conversionSet {
-				c.conversion = tok.current()
-				c.conversionSet = true
+			} else if !c.ConversionSet {
+				c.Conversion = tok.current()
+				c.ConversionSet = true
 				log.Info().Msg("characteristic conversion successfully parsed")
-			} else if !c.lowerLimitSet {
+			} else if !c.LowerLimitSet {
 				var buf float64
 				buf, err = strconv.ParseFloat(tok.current(), 64)
 				if err != nil {
 					log.Err(err).Msg("characteristic lowerLimit could not be parsed")
 					break forLoop
 				}
-				c.lowerLimit = buf
-				c.lowerLimitSet = true
+				c.LowerLimit = buf
+				c.LowerLimitSet = true
 				log.Info().Msg("characteristic lowerLimit successfully parsed")
-			} else if !c.upperLimitSet {
+			} else if !c.UpperLimitSet {
 				var buf float64
 				buf, err = strconv.ParseFloat(tok.current(), 64)
 				if err != nil {
 					log.Err(err).Msg("characteristic upperLimit could not be parsed")
 					break forLoop
 				}
-				c.upperLimit = buf
-				c.upperLimitSet = true
+				c.UpperLimit = buf
+				c.UpperLimitSet = true
 				log.Info().Msg("characteristic upperLimit successfully parsed")
 			}
 		}

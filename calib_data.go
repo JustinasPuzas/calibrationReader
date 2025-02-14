@@ -17,11 +17,11 @@ import (
 	"sync"
 	"time"
 
-	"github.com/asap2Go/calibrationReader/a2l"
+	"github.com/JustinasPuzas/calibrationReader/a2l"
 
-	"github.com/asap2Go/calibrationReader/ihex32"
+	"github.com/JustinasPuzas/calibrationReader/ihex32"
 
-	"github.com/asap2Go/calibrationReader/srec19"
+	"github.com/JustinasPuzas/calibrationReader/srec19"
 
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"

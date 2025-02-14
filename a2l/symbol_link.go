@@ -8,9 +8,9 @@ import (
 )
 
 type symbolLink struct {
-	symbolName    string
+	SymbolName    string
 	symbolNameSet bool
-	offset        int32
+	Offset        int32
 	offsetSet     bool
 }
 
@@ -29,7 +29,7 @@ forLoop:
 			log.Err(err).Msg("symbolLink could not be parsed")
 			break forLoop
 		} else if !sl.symbolNameSet {
-			sl.symbolName = tok.current()
+			sl.SymbolName = tok.current()
 			sl.symbolNameSet = true
 			log.Info().Msg("symbolLink symbolName successfully parsed")
 		} else if !sl.offsetSet {
@@ -39,7 +39,7 @@ forLoop:
 				log.Err(err).Msg("symbolLink offset could not be parsed")
 				break forLoop
 			}
-			sl.offset = int32(buf)
+			sl.Offset = int32(buf)
 			sl.offsetSet = true
 			log.Info().Msg("symbolLink offset successfully parsed")
 			break forLoop

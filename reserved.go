@@ -3,7 +3,7 @@ package calibrationReader
 import (
 	"errors"
 
-	"github.com/asap2Go/calibrationReader/a2l"
+	"github.com/JustinasPuzas/calibrationReader/a2l"
 	"github.com/rs/zerolog/log"
 )
 
