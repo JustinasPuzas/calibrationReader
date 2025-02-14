@@ -1,6 +1,7 @@
 This is a Fork from [calibrationReader](https://github.com/asap2Go/calibrationReader)
-- Fixed Lookup for Conversion method in Measurement parsing
-- Exposed Measurement and Characteristic data types field so they could be accessed after parsing a2l file
+
+  - Fixed Lookup for Conversion method in Measurement parsing
+  - Exposed Measurement and Characteristic data types field so they could be accessed after parsing a2l file
 
 # calibrationReader
 [![Go Report Card](https://goreportcard.com/badge/github.com/JustinasPuzas/calibrationReader)](https://goreportcard.com/report/github.com/JustinasPuzas/calibrationReader)  [![Codacy Badge](https://app.codacy.com/project/badge/Grade/e19560faf3484ccb88922ad3548b19ad)](https://www.codacy.com/gh/asap2Go/calibrationReader/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=asap2Go/calibrationReader&amp;utm_campaign=Badge_Grade) [![Codacy Badge](https://app.codacy.com/project/badge/Coverage/e19560faf3484ccb88922ad3548b19ad)](https://www.codacy.com/gh/asap2Go/calibrationReader/dashboard?utm_source=github.com&utm_medium=referral&utm_content=asap2Go/calibrationReader&utm_campaign=Badge_Coverage) [![Go](https://github.com/JustinasPuzas/calibrationReader/actions/workflows/go-build-test-and-license.yml/badge.svg)](https://github.com/JustinasPuzas/calibrationReader/actions/workflows/go-build-test-and-license.yml) [![CodeQL](https://github.com/JustinasPuzas/calibrationReader/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/JustinasPuzas/calibrationReader/actions/workflows/codeql-analysis.yml) [![Go Reference](https://pkg.go.dev/badge/github.com/asap2Go/calibrationReader.svg)](https://pkg.go.dev/github.com/JustinasPuzas/calibrationReader)
