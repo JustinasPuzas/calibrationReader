@@ -7,8 +7,8 @@ import (
 )
 
 type DisplayIdentifier struct {
-	displayName    string
-	displayNameSet bool
+	DisplayName    string
+	DisplayNameSet bool
 }
 
 func parseDisplayIdentifier(tok *tokenGenerator) (DisplayIdentifier, error) {
@@ -21,9 +21,9 @@ func parseDisplayIdentifier(tok *tokenGenerator) (DisplayIdentifier, error) {
 	} else if isKeyword(tok.current()) {
 		err = errors.New("unexpected token " + tok.current())
 		log.Err(err).Msg("displayIdentifier could not be parsed")
-	} else if !di.displayNameSet {
-		di.displayName = tok.current()
-		di.displayNameSet = true
+	} else if !di.DisplayNameSet {
+		di.DisplayName = tok.current()
+		di.DisplayNameSet = true
 		log.Info().Msg("displayIdentifier displayName successfully parsed")
 	}
 	return di, err
