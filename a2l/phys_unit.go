@@ -7,8 +7,8 @@ import (
 )
 
 type physUnit struct {
-	unit    string
-	unitSet bool
+	Unit    string
+	UnitSet bool
 }
 
 func parsePhysUnit(tok *tokenGenerator) (physUnit, error) {
@@ -21,9 +21,9 @@ func parsePhysUnit(tok *tokenGenerator) (physUnit, error) {
 	} else if isKeyword(tok.current()) {
 		err = errors.New("unexpected token " + tok.current())
 		log.Err(err).Msg("physUnit could not be parsed")
-	} else if !pu.unitSet {
-		pu.unit = tok.current()
-		pu.unitSet = true
+	} else if !pu.UnitSet {
+		pu.Unit = tok.current()
+		pu.UnitSet = true
 		log.Info().Msg("physUnit unit successfully parsed")
 	}
 	return pu, err
