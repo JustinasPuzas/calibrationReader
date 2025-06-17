@@ -53,11 +53,21 @@ func (a *A2L) toHashMap() (map[string]interface{}, error) {
 
 // ParseFromFile is the main exported function to be called from a2l package.
 // it takes an .a2l file and parses it
-func ParseFromFile(filepath string) (A2L, error) {
+// and goroutineCount (0 == amount of logical processors on the system)
+func ParseFromFile(filepath string, goroutineCount int) (A2L, error) {
 	var err error
 	var text string
 	var tg tokenGenerator
 	var a A2L
+
+	// if goroutineCount == 0 use default numProc value
+	if goroutineCount >= 1 {
+		numProc = goroutineCount
+	} else if goroutineCount <= -1 {
+		err := fmt.Errorf("goroutine count cannot be less than 1, received %d, available %d", goroutineCount, runtime.NumCPU())
+		log.Err(err).Msg("failed to set goroutine count:")
+		return a, err
+	}
 
 	startTime := time.Now()
 	//read a2l file from a text file

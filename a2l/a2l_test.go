@@ -16,7 +16,7 @@ func TestParseFromFile(t *testing.T) {
 	zerolog.SetGlobalLevel(zerolog.ErrorLevel)
 	a2lPath := "testing/ASAP2_Demo_V171_allKeywords.a2l"
 	startTime := time.Now()
-	a, err := ParseFromFile(a2lPath)
+	a, err := ParseFromFile(a2lPath, 0)
 	if err != nil {
 		t.Fatalf("failed parsing with error: %s.", err)
 	}
@@ -30,7 +30,7 @@ func TestMapify(t *testing.T) {
 	configureLogger()
 	zerolog.SetGlobalLevel(zerolog.ErrorLevel)
 	a2lPath := "testing/ASAP2_Demo_V171_allKeywords.a2l"
-	a, err := ParseFromFile(a2lPath)
+	a, err := ParseFromFile(a2lPath, 0)
 	if err != nil {
 		t.Fatalf("failed parsing with error: %s.", err)
 	}
@@ -95,7 +95,7 @@ func BenchmarkParseFromFile(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		a2lPath := "testing/ASAP2_Demo_V171_allKeywords.a2l"
 		startTime := time.Now()
-		a, err := ParseFromFile(a2lPath)
+		a, err := ParseFromFile(a2lPath, 0)
 		if err != nil {
 			log.Err(err).Msg("failed parsing with error:")
 		}
