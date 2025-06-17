@@ -101,7 +101,7 @@ func ReadCalibration(a2lFilePath string, hexFilePath string) (CalibrationData, e
 // in order to be able to parse hex and a2l in parallel
 func readA2L(wg *sync.WaitGroup, ca chan a2l.A2L, ce chan error, a2lFilePath string) {
 	defer wg.Done()
-	a, err := a2l.ParseFromFile(a2lFilePath)
+	a, err := a2l.ParseFromFile(a2lFilePath, 0)
 	if err != nil {
 		log.Err(err).Msg("could not parse a2l:")
 		ce <- err //send an error via channel to signal it to the main thread
