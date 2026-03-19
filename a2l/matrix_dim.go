@@ -24,7 +24,7 @@ type MatrixDim struct {
 // this function is special because it is the only function that utilizes tokenizer.previous().
 // this is the case because matrixDim is not clearly defined in earlier a2l standards (e.g. 1.6.0).
 // therefore it is possible to describe a curve with "MATRIX_DIM 1" and "MATRIX_DIM 1 0 0".
-// so the parser checks whether the token is a keyword in which case it rolls back the tokenizer one value and exits
+// so the parser checks whether the token is a keyword or standalone keyword in which case it rolls back the tokenizer one value and exits
 // or if it finds a number that can be parsed.
 // if it could parse x, y and z dim it will exit normally.
 func parseMatrixDim(tok *tokenGenerator) (MatrixDim, error) {
@@ -40,6 +40,12 @@ forLoop:
 		} else if isKeyword(tok.current()) {
 			//see above comment
 			log.Info().Str("current token", tok.current()).Msg("matrixDim detected keyword:")
+			tok.previous()
+			log.Info().Str("previous token", tok.current()).Msg("matrixDim rolled back to:")
+			break forLoop
+		} else if isStandaloneKeyword(tok.current()) {
+			//see above comment
+			log.Info().Str("current token", tok.current()).Msg("matrixDim detected standalone keyword:")
 			tok.previous()
 			log.Info().Str("previous token", tok.current()).Msg("matrixDim rolled back to:")
 			break forLoop

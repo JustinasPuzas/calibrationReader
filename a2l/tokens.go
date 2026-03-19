@@ -617,5 +617,11 @@ var keywordMap = map[string]uint8{
 	"VAR_NAMING":                      0,
 	"VAR_SELECTION_CHARACTERISTIC":    0,
 	"VERSION":                         0,
-	"READ_WRITE":					   0,
+}
+
+var standaloneKeywordMap = map[string]uint8{
+	"READ_WRITE": 0,
+	"READ_ONLY": 0,
+	"DISCRETE": 0,
+	"VIRTUAL": 0,
 }
