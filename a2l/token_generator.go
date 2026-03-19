@@ -329,6 +329,13 @@ func isKeyword(str string) bool {
 	return exists
 }
 
+// isStandaloneKeyword is used only in the matrixDim to detected when there are no dimensions left to parse.
+// see isKeyword and tokens.go for more details.
+func isStandaloneKeyword(str string) bool {
+	_, exists := standaloneKeywordMap[str]
+	return exists
+}
+
 // getTwoWordedToken handles keywords that contain a / like e.g. "/begin CHARACTERISTIC"
 func getTwoWordedToken(currentOuterIndex *int, currentInnerIndex *int, str [][]string) (string, error) {
 	var err error
