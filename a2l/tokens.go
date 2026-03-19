@@ -617,4 +617,5 @@ var keywordMap = map[string]uint8{
 	"VAR_NAMING":                      0,
 	"VAR_SELECTION_CHARACTERISTIC":    0,
 	"VERSION":                         0,
+	"READ_WRITE":					   0,
 }
